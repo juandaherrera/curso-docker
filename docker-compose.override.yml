@@ -1,0 +1,9 @@
+# Este archivo se puede agregar al gitignore para manejarlo localmente
+
+version: "3.8" # Versión del compose file
+
+services:
+  app:
+    build: .
+    environment:
+      UNA_VARIABLE: "Hola platzi"

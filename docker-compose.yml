@@ -5,7 +5,7 @@ version: "3.8" # Versión del compose file
 services:
 # nombre del servicio.
   app:
-    build: .
+    image: platziapp
     # Declaración de variables de entorno.
     environment:
       MONGO_URL: "mongodb://db:27017/test"
@@ -14,12 +14,8 @@ services:
       - db
     # Puerto del contenedor expuesto.
     ports:
-      - "3000:3000"
-    volumes:
-      - .:/usr/src
-      # indica que ficheros debe ignorar
-      - /usr/src/node_modules
-    command: npx nodemon index.js
+      - "3000-3001:3000" # Esto es para que al escalar el servicio "app" en dos instancias. 
+      # Ambas apunten al puerto 3000 de sus contenedores y lo expongan en el 3000 y 3001 local
 
   db:
     image: mongo
